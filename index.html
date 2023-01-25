@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Teorema de Pitágoras</title>
+    <style>
+    /* Adicionando Padding e centralizando  */
+body {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Estilizando os botões e labels */
+input[type=number] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid rgb(121, 121, 121);
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+button[type=submit] {
+  width: 30%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Mudando a cor de fundo do botão */
+button[type=submit]:hover {
+  background-color: #4ad551;
+}
+
+/* Estilizando o resultado */
+#result {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(8, 7, 7);
+}
+
+/* Adicionando espaçamento  */
+label {
+  margin-right: 10px;
+}
+    </style>
+  </head>
+  <body>
+    <h1>Calculadora Teorema de Pitágoras</h1>
+    <form>
+      <label for="a">Valor do cateto (a):</label>
+      <input type="number" id="a" name="a" required>
+      <br>
+      <label for="b">Valor do cateto (b):</label>
+      <input type="number" id="b" name="b" required>
+      <br>
+      <button type="submit">CALCULAR</button>
+    </form>
+    <br>
+    <p id="result"></p>
+    <script>
+      // Obter o formulário e o resultado.
+const form = document.querySelector('form');
+const resultPara = document.querySelector('#result');
+
+// Adicione um EventListener ao formulário para lidar com o evento de envio.
+form.addEventListener('submit', function(event) {
+  // Impedir o envio do formulário.
+  event.preventDefault();
+
+  // pegando os valores dos campos.
+  const a = form.elements.a.value;
+  const b = form.elements.b.value;
+
+  // Checando se os campos não estão vazios.
+  if(a !== "" && b !== ""){
+    // Checando se os caracteres inseridos são números.
+    if(!isNaN(a) && !isNaN(b)){
+      // Calculando o valor da hipotenusa usando o teorema de Pitágoras.
+      const c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+      // Mostrar o resultado.
+      resultPara.textContent = `Valor da Hipotenusa = ${c.toFixed(2)}`;
+    } else {
+      resultPara.textContent = "Por favor, insira valores numéricos válidos";
+    }
+  } else {
+    resultPara.textContent = "Por favor, preencha todos os campos";
+  }
+});
+    </script>
+  </body>
+</html>
+
